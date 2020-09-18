@@ -169,6 +169,11 @@ h3 {
   padding: 2% 1%;
 }
 
+.errors {
+  color: red;
+  padding: 2%;
+}
+
 
 /* Classes for toggle switch from W3Schools */
 

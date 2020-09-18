@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import * as yup from 'yup';
+import schema from './Validation/FormSchema';
 import axios from 'axios';
 import "./App.css";
 
@@ -9,10 +11,11 @@ import FoodDelivery from "./Components/FoodDelivery";
 
 // Initial State
 const initialFormValues = {
+  name: "",
   size: "",
   sauce: "",
   specialInstructions: "",
-  quantity: 1,
+  quantity: "1",
   glutenFree: false,
   // Toppings
   pepperoni: false,
@@ -22,6 +25,7 @@ const initialFormValues = {
 }
 
 const initialFormErrors = {
+  name: "",
   size: "",
   sauce: "",
   specialInstructions: "",
@@ -62,8 +66,21 @@ const App = () => {
       })
   }
 
+  const validate = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+        .then(valid => {
+          setFormErrors({ ...formErrors, [name]: ""});
+        })
+        .catch(err => {
+          setFormErrors({ ...formErrors, [name]: err.errors[0]})
+        })
+  }
+
   // EVENT HANDLERS //
   const inputChange = (name, value) => {
+    validate(name, value);
     setFormValues({ ...formValues, [name]: value });
   }
 
@@ -86,7 +103,10 @@ const App = () => {
   // SIDE EFFECTS //
   useEffect(() => {
     // Validate form values each time they change
-
+    schema.isValid(formValues)
+      .then(valid => {
+        setDisabled(!valid);
+      })
   }, [formValues])
 
   return (

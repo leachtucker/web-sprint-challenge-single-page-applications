@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 
 export default function(props) {
@@ -25,6 +24,15 @@ export default function(props) {
             <div className="form-container">
                 <h3>Build Your Own Pizza</h3>
                 <form onSubmit={onSubmit}>
+                <div className="form-group">
+                        <div className="form-bar">
+                            <h4>Name:</h4>
+                            <span>Required</span>
+                        </div>
+                        <label>
+                            <input type="text" name="name" value={values.name} onChange={onChange} placeholder="Ex. John Doe" />
+                        </label>
+                    </div>
                     <div className="form-group">
                         <div className="form-bar">
                             <h4>Choice of Size:</h4>
@@ -88,7 +96,7 @@ export default function(props) {
                             <div>Gluten Free Crust</div>
                             <div className="switch">
                                 <input type="checkbox" name="glutenFree" checked={values.glutenFree} onChange={onChange} />
-                                <span className="slider"></span>
+                                <span checked={values.glutenFree} className="slider"></span>
                             </div>
                         </label>
                     </div>
@@ -103,6 +111,18 @@ export default function(props) {
                     </div>
 
                     <div className="form-bottom">
+                        <div className='errors'>
+                            <div>{errors.name}</div>
+                            <div>{errors.size}</div>
+                            <div>{errors.sauce}</div>
+                            <div>{errors.specialInstructions}</div>
+                            <div>{errors.quantity}</div>
+                            <div>{errors.glutenFree}</div>
+                            <div>{errors.pepperoni}</div>
+                            <div>{errors.sausage}</div>
+                            <div>{errors.onions}</div>
+                            <div>{errors.dicedTomatoes}</div>
+                        </div>
                         <div className="container">
                             <label>
                                 <input type="number" name="quantity" value={values.quantity} onChange={onChange} />
