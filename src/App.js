@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import "./App.css";
 
@@ -6,8 +6,38 @@ import "./App.css";
 import PizzaForm from './Components/PizzaForm';
 import FoodDelivery from "./Components/FoodDelivery";
 
+// Initial State
+const intialFormValues = {
+  size: "",
+  sauce: "",
+  specialInstructions: "",
+  glutenFree: false,
+  // Toppings
+  pepporoni: false,
+  sausage: false,
+  onions: false,
+  dicedTomatoes: false
+}
+
+const initialFormErrors = {
+  size: "",
+  sauce: "",
+  specialInstructions: "",
+  glutenFree: "",
+  // Toppings
+  pepporoni: "",
+  sausage: "",
+  onions: "",
+  dicedTomatoes: ""
+}
+
+const initialOrders = [];
+
+
 
 const App = () => {
+  const [orders, setOrders] = useState(initialOrders);
+  const [formValues, setFormValues] = useState(intialFormValues);
 
   return (
     <>
