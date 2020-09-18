@@ -26,6 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2rem;
+  letter-spacing: 1px;
 }
 
 h2 {
@@ -103,4 +104,34 @@ h3 {
 .food-tile {
   width: 23%;
   margin-top: 2%;
+}
+
+/* Pizza Form Page */
+.pizza-maker {
+  width: 70%;
+  margin: 0 auto;
+}
+.pizza-maker .heading-container {
+  text-align: center;
+  padding: 2%;
+}
+
+.pizza-maker .hero {
+  height: 35vh;
+  background-image: url('./Assets/hero-img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.pizza-maker .form-container {
+  margin-top: 2%;
+}
+
+.form-bar {
+  background-color: #F6F6F6;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
