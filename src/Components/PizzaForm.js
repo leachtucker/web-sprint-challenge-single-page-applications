@@ -127,7 +127,7 @@ export default function(props) {
                             <label>
                                 <input type="number" name="quantity" value={values.quantity} onChange={onChange} />
                             </label>
-                            <button disabled={disabled} onClick={onSubmit}>Add to Order</button>
+                            <button id="submit-order-btn" disabled={disabled} onClick={onSubmit}>Add to Order</button>
                         </div>
                     </div>
 
