@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+
 
 export default function(props) {
     const { values, errors, disabled,  change, submit} = props;
@@ -22,7 +24,7 @@ export default function(props) {
             <div className="hero"></div>
             <div className="form-container">
                 <h3>Build Your Own Pizza</h3>
-                <form>
+                <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <div className="form-bar">
                             <h4>Choice of Size:</h4>
@@ -64,18 +66,51 @@ export default function(props) {
                             <span>Choose up to 4.</span>
                         </div>
                         <label>
-                            <input type="checkbox" name="sauce" value="original red" checked={values.sauce === 'original red'} onChange={onChange} /> Original Red
+                            <input type="checkbox" name="pepperoni" checked={values.pepperoni} onChange={onChange} /> Pepperoni
                         </label>
                         <label>
-                            <input type="checkbox" name="sauce" value="garlic ranch" checked={values.sauce === 'garlic ranch'} onChange={onChange} /> Garlic Ranch
+                        <input type="checkbox" name="sausage" checked={values.sausage} onChange={onChange} /> Sausage
                         </label>
                         <label>
-                            <input type="checkbox" name="sauce" value="bbq sauce" checked={values.sauce === 'bbq sauce'} onChange={onChange} /> BBQ Sauce
+                            <input type="checkbox" name="onions" checked={values.onions} onChange={onChange} /> Onions
                         </label>
                         <label>
-                            <input type="checkbox" name="sauce" value="spinach alfredo" checked={values.sauce === 'spinach alfredo'} onChange={onChange} /> Spinach Alfredo
+                            <input type="checkbox" name="dicedTomatoes" checked={values.dicedTomatoes} onChange={onChange} /> Diced Tomatoes
                         </label>
                     </div>
+
+                    <div className="form-group">
+                        <div className="form-bar">
+                            <h4>Choice of Substitute:</h4>
+                            <span>Choose up to 1.</span>
+                        </div>
+                        <label>
+                            <div>Gluten Free Crust</div>
+                            <div className="switch">
+                                <input type="checkbox" name="glutenFree" checked={values.glutenFree} onChange={onChange} />
+                                <span className="slider"></span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div className="form-group">
+                        <div className="form-bar">
+                            <h4>Special Instructions:</h4>
+                        </div>
+                        <label id="special-instructions">
+                            <input type="text" name="specialInstructions" value={values.specialInstructions} onChange={onChange} placeholder="Anything else you'd like to add?" />
+                        </label>
+                    </div>
+
+                    <div className="form-bottom">
+                        <div className="container">
+                            <label>
+                                <input type="number" name="quantity" value={values.quantity} onChange={onChange} />
+                            </label>
+                            <button disabled={disabled} onClick={onSubmit}>Add to Order</button>
+                        </div>
+                    </div>
+
 
                 </form>
             </div>

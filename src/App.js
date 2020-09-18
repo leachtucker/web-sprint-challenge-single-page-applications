@@ -12,9 +12,10 @@ const initialFormValues = {
   size: "",
   sauce: "",
   specialInstructions: "",
+  quantity: 1,
   glutenFree: false,
   // Toppings
-  pepporoni: false,
+  pepperoni: false,
   sausage: false,
   onions: false,
   dicedTomatoes: false
@@ -24,9 +25,10 @@ const initialFormErrors = {
   size: "",
   sauce: "",
   specialInstructions: "",
+  quantity: "",
   glutenFree: "",
   // Toppings
-  pepporoni: "",
+  pepperoni: "",
   sausage: "",
   onions: "",
   dicedTomatoes: ""
@@ -35,8 +37,6 @@ const initialFormErrors = {
 const initialOrders = [];
 
 const initialDisabled = true;
-
-
 
 const App = () => {
   const [orders, setOrders] = useState(initialOrders);
@@ -72,12 +72,15 @@ const App = () => {
       size: formValues.size,
       sauce: formValues.sauce,
       specialInstructions: formValues.specialInstructions.trim(),
+      quantity: formValues.quantity,
       glutenFree: formValues.glutenFree,
-      pepporoni: formValues.pepporoni,
+      pepperoni: formValues.pepperoni,
       sausage: formValues.sausage,
       onions: formValues.onions,
       dicedTomatoes: formValues.dicedTomatoes
     }
+
+    postNewOrder(newOrder);
   }
 
   // SIDE EFFECTS //
@@ -97,7 +100,8 @@ const App = () => {
         </div>
       </header>
       <Route exact path="/" component={() => <FoodDelivery />} />
-      <Route path="/pizza" component={() => <PizzaForm values={formValues} errors={formErrors} disabled={disabled} change={inputChange} submit={formSubmit} />} />
+      {/* Must use render instead of component. Otherwise, our inputs will lose focus on each change */}
+      <Route path="/pizza" render={() => <PizzaForm values={formValues} errors={formErrors} disabled={disabled} change={inputChange} submit={formSubmit} />} />
     </>
   );
 };
